@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(QCustomPlot VERSION 0.1.0)
+project(LarkPlot VERSION 0.1.0)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(Qt5_DIR C:/Qt/Qt5.14.0/5.14.0/msvc2017_64/lib/cmake)
+# set(Qt5_DIR C:/Qt/Qt5.14.0/5.14.0/msvc2017_64/lib/cmake)
 
 if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -26,15 +26,24 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 
-add_executable(${PROJECT_NAME} 
-                qcustomplot.h
-                qcustomplot.cpp
-                mainwindow.ui
-                mainwindow.cpp
-                main.cpp
-                )
+# add_executable(${PROJECT_NAME} 
+#                 qcustomplot.h
+#                 qcustomplot.cpp
+#                 mainwindow.ui
+#                 mainwindow.cpp
+#                 main.cpp
+#                 )
 
-target_link_libraries(${PROJECT_NAME}
+add_library(QCustomPlotLib
+    ../qcustomplot.h
+    ../qcustomplot.cpp
+)
+
+include_directories(../)
+include_directories(.)
+
+target_link_libraries(QCustomPlotLib
+                        ${MOC_Files}
                         Qt5::Core
                         Qt5::Gui
                         Qt5::Widgets
@@ -43,7 +52,24 @@ target_link_libraries(${PROJECT_NAME}
                         ${OPENGL_LIBRARIES}
                         )
 
-add_subdirectory(LarkPlot)
+aux_source_directory(. SRCS)
+add_library(${PROJECT_NAME}
+    ${SRCS}
+)
+
+
+
+target_link_libraries(${PROJECT_NAME}
+                        ${MOC_Files}
+                        QCustomPlotLib
+                        Qt5::Core
+                        Qt5::Gui
+                        Qt5::Widgets
+                        Qt5::OpenGL
+                        Qt5::PrintSupport
+                        ${OPENGL_LIBRARIES}
+                        )
+
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 # include(CPack)

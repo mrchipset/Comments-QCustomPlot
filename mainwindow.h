@@ -46,54 +46,67 @@
 #include <QTimer>
 #include "qcustomplot.h" // the header file of QCustomPlot. Don't forget to add it to your project, if you use an IDE, so it gets compiled.
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-  Q_OBJECT
-  
+    Q_OBJECT
+
 public:
-  explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
-  
-  void setupDemo(int demoIndex);
-  void setupQuadraticDemo(QCustomPlot *customPlot);
-  void setupSimpleDemo(QCustomPlot *customPlot);
-  void setupSincScatterDemo(QCustomPlot *customPlot);
-  void setupScatterStyleDemo(QCustomPlot *customPlot);
-  void setupLineStyleDemo(QCustomPlot *customPlot);
-  void setupScatterPixmapDemo(QCustomPlot *customPlot);
-  void setupDateDemo(QCustomPlot *customPlot);
-  void setupTextureBrushDemo(QCustomPlot *customPlot);
-  void setupMultiAxisDemo(QCustomPlot *customPlot);
-  void setupLogarithmicDemo(QCustomPlot *customPlot);
-  void setupRealtimeDataDemo(QCustomPlot *customPlot);
-  void setupParametricCurveDemo(QCustomPlot *customPlot);
-  void setupBarChartDemo(QCustomPlot *customPlot);
-  void setupStatisticalDemo(QCustomPlot *customPlot);
-  void setupSimpleItemDemo(QCustomPlot *customPlot);
-  void setupItemDemo(QCustomPlot *customPlot);
-  void setupStyledDemo(QCustomPlot *customPlot);
-  void setupAdvancedAxesDemo(QCustomPlot *customPlot);
-  void setupColorMapDemo(QCustomPlot *customPlot);
-  void setupFinancialDemo(QCustomPlot *customPlot);
-  
-  void setupPlayground(QCustomPlot *customPlot);
-  
-private slots:
-  void realtimeDataSlot();
-  void bracketDataSlot();
-  void screenShot();
-  void allScreenShots();
-  
+    explicit MainWindow(QWidget* parent = 0);
+    ~MainWindow();
+
+//   void setupDemo(int demoIndex);
+//   void setupQuadraticDemo(QCustomPlot *customPlot);
+//   void setupSimpleDemo(QCustomPlot *customPlot);
+//   void setupSincScatterDemo(QCustomPlot *customPlot);
+//   void setupScatterStyleDemo(QCustomPlot *customPlot);
+//   void setupLineStyleDemo(QCustomPlot *customPlot);
+//   void setupScatterPixmapDemo(QCustomPlot *customPlot);
+//   void setupDateDemo(QCustomPlot *customPlot);
+//   void setupTextureBrushDemo(QCustomPlot *customPlot);
+//   void setupMultiAxisDemo(QCustomPlot *customPlot);
+//   void setupLogarithmicDemo(QCustomPlot *customPlot);
+//   void setupRealtimeDataDemo(QCustomPlot *customPlot);
+//   void setupParametricCurveDemo(QCustomPlot *customPlot);
+//   void setupBarChartDemo(QCustomPlot *customPlot);
+//   void setupStatisticalDemo(QCustomPlot *customPlot);
+//   void setupSimpleItemDemo(QCustomPlot *customPlot);
+//   void setupItemDemo(QCustomPlot *customPlot);
+//   void setupStyledDemo(QCustomPlot *customPlot);
+//   void setupAdvancedAxesDemo(QCustomPlot *customPlot);
+//   void setupColorMapDemo(QCustomPlot *customPlot);
+//   void setupFinancialDemo(QCustomPlot *customPlot);
+
+//   void setupPlayground(QCustomPlot *customPlot);
+
+// private slots:
+//   void realtimeDataSlot();
+//   void bracketDataSlot();
+//   void screenShot();
+//   void allScreenShots();
 private:
-  Ui::MainWindow *ui;
-  QString demoName;
-  QTimer dataTimer;
-  QCPItemTracer *itemDemoPhaseTracer;
-  int currentDemoIndex;
+    Q_SLOT void titleDoubleClick(QMouseEvent* event);
+    Q_SLOT void axisLabelDoubleClick(QCPAxis* axis, QCPAxis::SelectablePart part);
+    Q_SLOT void legendDoubleClick(QCPLegend* legend, QCPAbstractLegendItem* item);
+    Q_SLOT void selectionChanged();
+    Q_SLOT void mousePress();
+    Q_SLOT void mouseWheel();
+    Q_SLOT void addRandomGraph();
+    Q_SLOT void removeSelectedGraph();
+    Q_SLOT void removeAllGraphs();
+    Q_SLOT void contextMenuRequest(QPoint pos);
+    Q_SLOT void moveLegend();
+    Q_SLOT void graphClicked(QCPAbstractPlottable* plottable, int dataIndex);
+private:
+    Ui::MainWindow* ui;
+    QString demoName;
+    QTimer dataTimer;
+    QCPItemTracer* itemDemoPhaseTracer;
+    int currentDemoIndex;
 };
 
 #endif // MAINWINDOW_H
