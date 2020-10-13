@@ -15,7 +15,6 @@ find_package(Qt5 COMPONENTS Widgets Core Gui OpenGL PrintSupport REQUIRED)
 
 add_definitions(-DQCUSTOMPLOT_USE_OPENGL)
 add_definitions(-w)
-execute_process(COMMAND python migrate.py WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -35,13 +34,12 @@ endif(NOT OPENGL_FOUND)
 #                 )
 
 add_library(QCustomPlotLib
-    ../qcustomplot.h
-    ../qcustomplot.cpp
+    qcp/qcustomplot.h
+    qcp/qcustomplot.cpp
 )
 
-include_directories(../)
+include_directories(qcp)
 include_directories(.)
-
 target_link_libraries(QCustomPlotLib
                         ${MOC_Files}
                         Qt5::Core
