@@ -15,7 +15,7 @@ find_package(Qt5 COMPONENTS Widgets Core Gui OpenGL PrintSupport REQUIRED)
 
 add_definitions(-DQCUSTOMPLOT_USE_OPENGL)
 add_definitions(-w)
-execute_process(COMMAND python migrate.py WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+# execute_process(COMMAND python migrate.py WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -26,9 +26,11 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 
+
+
+add_subdirectory(LarkPlot)
+include_directories(LarkPlot)
 add_executable(${PROJECT_NAME} 
-                qcustomplot.h
-                qcustomplot.cpp
                 mainwindow.ui
                 mainwindow.cpp
                 main.cpp
@@ -41,9 +43,9 @@ target_link_libraries(${PROJECT_NAME}
                         Qt5::OpenGL
                         Qt5::PrintSupport
                         ${OPENGL_LIBRARIES}
+                        LarkPlot
                         )
 
-add_subdirectory(LarkPlot)
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 # include(CPack)

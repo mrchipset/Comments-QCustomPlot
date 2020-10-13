@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QCustomPlot" name="customPlot" native="true"/>
+     <widget class="LarkPlot" name="customPlot" native="true"/>
     </item>
    </layout>
   </widget>
@@ -25,9 +25,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QCustomPlot</class>
+   <class>LarkPlot</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header>LarkPlot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -14777,7 +14777,8 @@ void QCustomPlot::mousePressEvent(QMouseEvent* event)
     mMouseHasMoved = false;
     mMousePressPos = event->pos();
 
-    if (mSelectionRect && mSelectionRectMode != QCP::srmNone) {
+    if (event->button() & Qt::LeftButton &&
+            mSelectionRect && mSelectionRectMode != QCP::srmNone) {
         if (mSelectionRectMode != QCP::srmZoom || qobject_cast<QCPAxisRect*>(axisRectAt(mMousePressPos))) // in zoom mode only activate selection rect if on an axis rect
             mSelectionRect->startSelection(event);
     } else {
@@ -17666,7 +17667,7 @@ void QCPAxisRect::layoutChanged()
 void QCPAxisRect::mousePressEvent(QMouseEvent* event, const QVariant& details)
 {
     Q_UNUSED(details)
-    if (event->buttons() & Qt::LeftButton) {
+    if (event->buttons() & Qt::RightButton) {
         mDragging = true;
         // initialize antialiasing backup in case we start dragging:
         if (mParentPlot->noAntialiasingOnDrag()) {
