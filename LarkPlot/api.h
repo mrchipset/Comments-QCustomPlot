@@ -1,14 +1,14 @@
-#ifndef LARK_PLOT_API.h
-#define LARK_PLOT_API.h
+#ifndef LARK_PLOT_API_H
+#define LARK_PLOT_API_H
 
-#if SHARE_LIB
-#if SHARE_LIB_EXPORT
-#define API __declspec( dllexport )
+#if LARK_SHARE_LIB
+#if LARK_SHARE_LIB_EXPORT
+#define LARK_API __declspec( dllexport )
 #else
-#define API __declspec( dllimport )
+#define LARK_API __declspec( dllimport )
 #endif
 #else
-#define API
+#define LARK_API
 #endif
 
 #endif

@@ -9,7 +9,7 @@
  * 1. Custom the selection mode
  * 2. Change the ContextMenu, don't display when mouse moved.
  */
-class API LarkPlot : public QCustomPlot
+class LARK_API LarkPlot : public QCustomPlot
 {
     Q_OBJECT
     explicit LarkPlot(QWidget* parent = nullptr);
