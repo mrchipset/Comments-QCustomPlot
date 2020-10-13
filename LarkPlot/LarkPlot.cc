@@ -20,7 +20,7 @@ void LarkPlot::setContextMenuPolicy(Qt::ContextMenuPolicy policy)
 void LarkPlot::initializePlot()
 {
     // Change the Selection Rect to Lark customized.
-    //Comment this when using the revised QCustomPlot
+    // Comment this when using the revised QCustomPlot
     // setSelectionRect(new LarkSelectionRect(this));
 
 }

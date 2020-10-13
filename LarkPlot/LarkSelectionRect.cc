@@ -1,7 +1,7 @@
 #include "LarkSelectionRect.h"
 #include <QMouseEvent>
 
-LarkSelectionRect::LarkSelectionRect(LarkPlot* parent) : QCPSelectionRect(parent)
+LarkSelectionRect::LarkSelectionRect(QCustomPlot* parent) : QCPSelectionRect(parent)
 {
 
 }

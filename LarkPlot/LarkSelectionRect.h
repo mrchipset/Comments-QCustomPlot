@@ -3,7 +3,7 @@
 
 #include "api.h"
 
-#include "LarkPlot.h"
+#include "qcustomplot.h"
 
 /**
  * @brief LarkSelectionRect is inherited from QCPSelectionRect
@@ -15,7 +15,7 @@ class LARK_API LarkSelectionRect : public QCPSelectionRect
 {
     Q_OBJECT
 public:
-    explicit LarkSelectionRect(LarkPlot* parent);
+    explicit LarkSelectionRect(QCustomPlot* parent);
 
 protected:
     virtual void startSelection(QMouseEvent* event) override;
