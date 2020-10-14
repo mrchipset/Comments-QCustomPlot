@@ -1,10 +1,12 @@
 #include "LarkAxis.h"
+#include "LarkAxisTicker.h"
 
 LarkAxis::LarkAxis(QCPAxisRect* parent, AxisType type) : QCPAxis(parent, type),
     m_marginScaleMode(smNone),
     m_marginScale(std::make_pair(0.0, 0.0)),
     m_unitTextElement(new QCPTextElement(parent->parentPlot()))
 {
+    mTicker = QSharedPointer<QCPAxisTicker>(new LarkAxisTicker);
     setupScaleStrategy();
     setupUnitLabel();
 }

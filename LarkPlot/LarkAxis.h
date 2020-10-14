@@ -7,8 +7,8 @@
 #include <utility>
 
 /* TODO
- * Inherit the QCPAxis and Enable the Axis with unit label
- * Hide the original setRange function and add auto enlarge function. done
+ * Rewrite the AxisTicker for scientific numbers
+ * Add some helper method for preference and information
  */
 class LARK_API LarkAxis : public QCPAxis
 {

@@ -1,6 +1,7 @@
 #include "LarkPlot.h"
 #include "LarkSelectionRect.h"
 #include "LarkAxisRect.h"
+#include "LarkGraph.h"
 
 LarkPlot::LarkPlot(QWidget* parent) : QCustomPlot(parent)
 {
@@ -57,6 +58,27 @@ void LarkPlot::createDefaultLarkAxisRect()
     legend->setLayer(QLatin1String("legend"));
 }
 
+LarkGraph* LarkPlot::addGraph(const QString& title, QCPAxis* keyAxis, QCPAxis* valueAxis)
+{
+    LarkGraph* newGraph = nullptr;
+
+    if (!keyAxis) keyAxis = xAxis;
+    if (!valueAxis) valueAxis = yAxis;
+    if (!keyAxis || !valueAxis) {
+        qDebug() << Q_FUNC_INFO << "can't use default QCustomPlot xAxis or yAxis, because at least one is invalid (has been deleted)";
+        return nullptr;
+    }
+    if (keyAxis->parentPlot() != this || valueAxis->parentPlot() != this) {
+        qDebug() << Q_FUNC_INFO << "passed keyAxis or valueAxis doesn't have this QCustomPlot as parent";
+        return nullptr;
+    }
+
+    newGraph = new LarkGraph(keyAxis, valueAxis);
+    newGraph->setName(title);
+    return newGraph;
+}
+
+
 void LarkPlot::mouseReleaseEvent(QMouseEvent* event)
 {
     // Check the mouse moved, and disable the context menu
@@ -69,4 +91,23 @@ void LarkPlot::mouseReleaseEvent(QMouseEvent* event)
     }
 
     QCustomPlot::mouseReleaseEvent(event);
+}
+
+void LarkPlot::keyPressEvent(QKeyEvent* event)
+{
+    // event->accept();
+}
+
+void LarkPlot::keyReleaseEvent(QKeyEvent* event)
+{
+    switch (event->key()) {
+    case Qt::Key_Home:
+        rescaleAxes(true);
+        replot(rpQueuedReplot);
+        break;
+    default:
+        event->ignore();
+        break;
+    }
+    event->accept();
 }

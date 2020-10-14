@@ -10,6 +10,7 @@
  */
 class LARK_API LarkAxisTicker : public QCPAxisTicker
 {
+    Q_GADGET
 public:
     LarkAxisTicker();
     ~LarkAxisTicker();
@@ -20,8 +21,17 @@ public:
                           QVector<QString>* tickLabels) override;
 
 protected:
+    virtual double getTickStep(const QCPRange& range) override;
+    virtual int getSubTickCount(double tickStep) override;
+    virtual QString getTickLabel(double tick, const QLocale& locale,
+                                 QChar formatChar, int precision) override;
+    virtual QVector<double> createTickVector(double tickStep,
+            const QCPRange& range) override;
+    virtual QVector<double> createSubTickVector(int subTickCount,
+            const QVector<double>& ticks) override;
     virtual QVector<QString> createLabelVector(const QVector<double>& ticks,
             const QLocale& locale, QChar formatChar, int precision) override;
+
 
 };
 
