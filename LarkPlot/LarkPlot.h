@@ -18,7 +18,9 @@ private:
     QList<QCPSelectionRect*> m_selectionRects;
     Qt::ContextMenuPolicy m_contextMenuPolicy;
     void initializePlot();
+    void createDefaultLarkAxisRect();
 protected:
     virtual void mouseReleaseEvent(QMouseEvent* event) override;
+
 };
 #endif

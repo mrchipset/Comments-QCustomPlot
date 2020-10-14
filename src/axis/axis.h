@@ -235,11 +235,11 @@ public:
   
   // setters:
   Q_SLOT void setScaleType(QCPAxis::ScaleType type);
-  Q_SLOT void setRange(const QCPRange &range);
-  void setRange(double lower, double upper);
-  void setRange(double position, double size, Qt::AlignmentFlag alignment);
-  void setRangeLower(double lower);
-  void setRangeUpper(double upper);
+  Q_SLOT virtual void setRange(const QCPRange &range);
+  virtual void setRange(double lower, double upper);
+  virtual void setRange(double position, double size, Qt::AlignmentFlag alignment);
+  virtual void setRangeLower(double lower);
+  virtual void setRangeUpper(double upper);
   void setRangeReversed(bool reversed);
   void setTicker(QSharedPointer<QCPAxisTicker> ticker);
   void setTicks(bool show);
